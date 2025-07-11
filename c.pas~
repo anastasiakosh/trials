@@ -1,4 +1,0 @@
-program ss;
-begin
-	writeln('hello world, 100/2= ', 100/2)
-end.

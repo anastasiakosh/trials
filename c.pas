@@ -1,4 +1,11 @@
 program ss;
+var
+	x:integer=25;
 begin
-	writeln(27 div 4, ' ', 27 mod 4)
+	writeln(x);
+	x:=36;
+
+	writeln(x);
+	x:=999+x;
+	writeln(x);
 end.

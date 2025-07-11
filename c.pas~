@@ -1,4 +1,11 @@
 program ss;
+var
+	x:integer=25;
 begin
-	writeln('hello world, 14/2= ', 14/2:7:3)
+	writeln(x);
+	x:=36;
+
+	writeln(x);
+	x:=999;
+	writeln(x);
 end.

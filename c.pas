@@ -1,4 +1,4 @@
 program ss;
 begin
-	writeln('hello world, 14/2= ', 14/2:7:3)
+	writeln(27 div 4, ' ', 27 mod 4)
 end.

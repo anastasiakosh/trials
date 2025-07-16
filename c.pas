@@ -1,11 +1,11 @@
 program ss;
-var
-	x:integer=25;
-begin
-	writeln(x);
-	x:=36;
+var 
+integer: real=1.0000;
 
-	writeln(x);
-	x:=999+x;
-	writeln(x);
+begin
+	writeln(integer);
+
+
+	
+
 end.

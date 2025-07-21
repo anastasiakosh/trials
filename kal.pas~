@@ -1,0 +1,5 @@
+program posledovatel;
+begin
+	writeln('1');
+	readln;
+end.

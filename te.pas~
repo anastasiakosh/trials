@@ -1,9 +1,0 @@
-program vlad;
-var 
-	x: integer =10;
-	y,z: integer=990; 
-begin
-	writeln ('x=',x,' y=',y, ' z=',z);
-	x:=y+z;
-	writeln('x= ',x);
-end.	

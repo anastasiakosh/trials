@@ -2,14 +2,11 @@ program heppy;
 var 
 year: integer;
 begin
-	write('hello! ser, please, enter your year of birth: ');
-	readln(year);
-	while (year < 1900) or (year > 2024) do
-	begin
-		writeln('SER!!! your make mistake, year ',year,' is not correct.');
+	repeat 
+		writeln('enter year of biarh: ');
+		readln(year);
+	until (year > 1900) and (year < 2024);
+writeln('you have ',year,' years');
+end.
 
-		write('please, repeat your year: )');
-		readln(year)
-	end;
-	writeln('yey, you enter ',year, ' year!!!')
-	end.
+

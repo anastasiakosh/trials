@@ -1,0 +1,14 @@
+program heppy;
+var 
+year: integer;
+begin
+	write('hello! ser, please, enter your year of birth: ');
+	readln(year);
+	while (year < 1900) or (year > 2024) do
+	begin
+		writeln('SER!!! your make mistake, year ',year,'is not correct.');
+		write('please, repeat your year: )');
+		readln(year)
+	end;
+	writeln('yey, you enter',year, 'year!!!')
+	end.

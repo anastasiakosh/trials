@@ -1,0 +1,40 @@
+program lol;
+var
+	stroka, visota,dop, dzop: integer;
+begin
+	repeat
+		write('enter heigh of diamang:');
+		readln(visota);
+	until (visota > 0) and (visota mod 2 = 1);
+	visota := visota div 2;
+		
+	for stroka := 1 to visota + 1 do
+	begin
+		for dop := stroka to visota do
+			write(' ');
+		write('*');
+		if stroka > 1 then
+		begin
+			for dzop := 1 to stroka * 2 - 3 do
+			write(' ');
+		write('*');
+	end;
+		writeln;
+	end;
+	{dali yde NIZ}
+	for stroka := visota downto 1 do
+	begin
+		for dop := stroka to visota do
+			write(' ');
+		write('*');
+		if stroka > 1 then
+		begin
+			for dzop := 1 to  stroka * 2 - 3 do
+			write(' ');
+		write('*');
+	end;
+		writeln;
+	end
+
+end.
+

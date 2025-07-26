@@ -1,19 +1,19 @@
 program diamand_profi;
-procedure PrintSpaces(count: integer);
+procedure PrintSpaces(ch: char; count: integer);
 var 
 	i: integer;
 begin
 	for i := 1 to count do
-		write(' ')
+		write(ch)
 end;
 
 procedure PrintLineOfDiamond(visota, stroka: integer);
 begin
-	PrintSpaces(visota - stroka + 1);
+	PrintSpaces('9',visota - stroka + 1);
 	write('*');
 	if stroka > 1 then
 	begin
-		PrintSpaces(2*stroka -3);
+		PrintSpaces('9',2*stroka -3);
 		write('*');
 	end;
 	writeln;

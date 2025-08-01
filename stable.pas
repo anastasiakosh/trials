@@ -15,49 +15,31 @@ begin
 	end;
 end;
 
-procedure PrintChars(ch: char; count: integer);
-var 
-	i: integer;
-begin
-	for i := 1 to count do
-		write(ch);
-	write(' ');
-end;
-procedure PrintL(n: integer);
-begin
-	PrintChars(' ',n);
-	write('*');
-end;
-
-procedure pechatka(n,k,H:integer);
+procedure pechatka(i, k, H: integer);
 var
-	x, seredina,i: integer;
+  h, s, local_line, pos: integer;
 begin
-	x := H+((H*N-H-1) div 2);
-	1f= x-ksredin
-	1f= 13 - 3*2
+  h := (H - 1) div 2;
+  s := (k - 1) * h; // с какой строки начинается фигура
+  local_line := i - s;
 
-	
+  if (local_line < 1) or (local_line > H) then
+  begin
+    PrintChars(' ', H + 1); // если фигура еще не началась или уже закончилась
+    exit;
+  end;
 
-
-
-	seredina := (H+1) div 2;
-	if (n = 1) or (n = seredina*k/2) then
-		PrintChars('*',H);
-	
-	if (n > 1) and (n < seredina) then
-		{for i := n-2 downto (n div 2) + 1 do}
-		PrintL(H-n-1);
-	if n = seredina then
-	begin
-		PrintChars('*',H);
-	end;
-	if (n > seredina) and (n < H) then
-		{for i := (n div 2)-1 downto 1 do}
-		PrintL(H-n-1);
-	if n = H then 
-		PrintChars('*',H);
-
+  if (local_line = 1) or (local_line = h + 1) or (local_line = H) then
+  begin
+    PrintChars('*', H); // верхняя, середина и нижняя линии — сплошные звёзды
+  end
+  else
+  begin
+    pos := H - local_line + 1;
+    PrintChars(' ', pos - 1); // перед звездой
+    write('*'); // одна звезда
+    write(' '); // пробел после звезды, отделяющий от следующей колонки
+  end;
 end;
 
 
@@ -66,8 +48,8 @@ var
 
 begin
 	{request(H);}
-	H := 7;
-	N := 2;
+	H := 7
+	N := 3;
 	{H :=(H-1) div 2;}
 	{есть ЭН колонок с ширеной АШ+1}
 	{высота изображения будет

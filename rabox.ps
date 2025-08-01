@@ -1,0 +1,75 @@
+program ex14;
+
+procedure request(var n,kolv:integer);
+var
+	bred : boolean;
+begin
+	bred := TRUE;
+	while bred  do
+	begin
+		write('enter heiht and weith ONE NUMBEROM: ');
+		readln(n);
+	bred := (n < 5) or (n mod 2 = 0);
+		if bred then
+			writeln('NO! please,enter n>5 and he will be mot odd');
+	write('and write count of Z you want: ');
+	readln(kolv);
+	end;
+end;
+
+procedure PrintChars(ch: char; count: integer);
+var 
+	i: integer;
+begin
+	for i := 1 to count do
+		write(ch)
+end;
+procedure PrintL(n: integer);
+var
+	i : integer;
+begin
+	writeln;
+		PrintChars(' ',n);
+		write('*');
+		PrintChars('x',n);
+end;
+procedure linia (n:integer);
+begin
+	PrintChars('*',n);		{*******}
+end;
+
+procedure skosone(n: integer);
+var
+	i: integer;
+begin
+		for i := n-2 downto (n div 2) + 1 do
+			PrintL(i);
+end;
+
+procedure skostwo(n: integer);
+var
+	i: integer;
+begin
+	for i := (n div 2)-1 downto 1 do
+		PrintL(i);
+end;
+procedure PrintZ(n: integer);
+begin
+	linia(n);
+	skosone(n);
+	writeln;
+	linia(n);
+	skostwo(n);
+	writeln;
+	linia(n);
+end;
+
+var 
+	n, kolv:integer;
+
+begin
+	{request(n,kolv);}
+	n := 7;
+	kolv := 3;
+	PrintZ(n);
+end.

@@ -1,0 +1,23 @@
+Script started on 2025-07-01 14:17:36+03:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="73" LINES="17"]
+]0;terson@terminator:~/projeck]666;vte.shell.postexec=0\]666;vte.shell.precmd!\]7;file://terminator/home/terson/projeck\[?2004h]133;D;0\]133;A\[32;1mterson@terminator[0m:[32;1m~/projeck[0m$[0m ]133;B\s[Kls
+[?2004l]133;C\]666;vte.shell.preexec!\[0m[01;32ma.out[0m  c.cpp  [00;90mc.cpp~[0m  skriptok.txt  ss.cpp  [00;90mss.cpp~[0m
+]0;terson@terminator:~/projeck]666;vte.shell.postexec=0\]666;vte.shell.precmd!\]7;file://terminator/home/terson/projeck\[?2004h]133;D;0\]133;A\[32;1mterson@terminator[0m:[32;1m~/projeck[0m$[0m ]133;B\cd[K[Kcat ss.cpp
+[?2004l]133;C\]666;vte.shell.preexec!\#include <iostream>
+ using namespace std;
+namespace A{
+int x;
+}
+int x;
+int main() 
+{
+int x=7;
+{
+int x=222;
+cout << ::x;
+}
+}
+]0;terson@terminator:~/projeck]666;vte.shell.postexec=0\]666;vte.shell.precmd!\]7;file://terminator/home/terson/projeck\[?2004h]133;D;0\]133;A\[32;1mterson@terminator[0m:[32;1m~/projeck[0m$[0m ]133;B\^C[?2004l[?2004h[?2004l
+]0;terson@terminator:~/projeck]666;vte.shell.postexec=0\]666;vte.shell.precmd!\]7;file://terminator/home/terson/projeck\[?2004h]133;D;130\]133;A\[32;1mterson@terminator[0m:[32;1m~/projeck[0m$[0m ]133;B\[?2004l
+exit
+
+Script done on 2025-07-01 14:17:52+03:00 [COMMAND_EXIT_CODE="130"]

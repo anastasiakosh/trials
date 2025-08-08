@@ -1,0 +1,8 @@
+#!/bin/sh
+start=$(date +%s)
+./$*
+proga=$?
+end=$(date +%s)
+res=$((end-start))
+echo "result= " $res;
+exit $proga

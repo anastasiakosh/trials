@@ -14,7 +14,7 @@ begin
     until (c <> ' ') and (c <> #10);
     while (c <> ' ') and (c <> #10) do
     begin
-        if (c < '0') and (c > '9') then
+        if (c < '0') or (c > '9') then
         begin
             writeln('Unexpected ''',c,''''' in pos: ', pos);
             readln;

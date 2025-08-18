@@ -1,3 +1,3 @@
 #!/bin/sh
 
-rm -v .*~ *.o *~
+rm -v .*~ *.o *~ .*swp

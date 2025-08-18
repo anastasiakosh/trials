@@ -1,11 +1,7 @@
-Вот несколько несвязанных между собой строк:
-Синий кот спал на крыше старого дома.
-Математика - это язык вселенной, написанный цифрами.
-В холодильнике закончилось молоко вчера утром.
-Звезды танцуют под музыку космического ветра.
-Автобус номер 47 опаздывает на три минуты.
-Её смех напоминал звон серебряных колокольчиков.
-Завтра будет дождь или солнце - кто знает?
-Книги пахнут приключениями и мудростью.
-Красный светофор мигает в пустом городе.
-Время течёт как мёд в зимний день.
+Here is a simple text to test your program.
+It has words of different lengths: I, am, you, are, he, she, it, we, they.
+Some of them are exactly two characters: am, is, at, on, in, to, be, go, do.
+And some are longer: word, text, program, check, testing.
+123 45 6789 ab cd ef gh ij kl mn op qr st uv wx yz.
+! @ # $ % ^ & * ( ) - _ + = [ ] { } | \ : ; " ' < > , . ? /
+if or no so my by up an as of me us hi ok yo

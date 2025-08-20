@@ -1,9 +1,0 @@
-program stru;
-var
-    s1: string[14];
-    s2: string;
-begin
-    s1 := 'abra';
-    s2 := s1 + 'kadabra';
-    writeln(s2);
-end.

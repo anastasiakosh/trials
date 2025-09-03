@@ -24,14 +24,17 @@ end;
 procedure CalculatePosition(var s: Star; var pos, prev: Side);
 var
     choice: word;
+    UpAndDown, LeftAndRight: boolean;
 begin
     choice := random(10);
     if choice <> 0 then
         exit;
+    prev := pos;
     repeat
     pos := Side(((random(39)) + 1) div 10);
-    until pos <> prev;
-    prev := pos;
+    UpAndDown := ((pos = up) and ( prev = down)) or ((pos = down) and ( prev = up));
+    LeftAndRight := ((pos = left) and ( prev = right)) or ((pos = right) and ( prev = left));
+    until (pos <> prev) and not UpAndDown and not LeftAndRight;
 end;
 
 procedure Draw(var s: Star; var pos, prev: Side);
@@ -85,6 +88,8 @@ begin
                     s.x := 1;
         end;
         end;
+            if (s.x = ScreenWidth) and (s.y = ScreenHeight) then
+                continue;
             Draw(s, pos, prev);
         end
         else

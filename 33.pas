@@ -8,7 +8,7 @@ const
     KeyLeft = -75;
     keyRight = -77;
     DelayDuration = 100;
-
+    Block = 10;
 type
     Star = record
         x, y: integer;
@@ -91,11 +91,12 @@ begin
     end;
     end;
 end;
+
 var
     s: Star;
     {SaveTextAttr: integer;}
-    Key: integer;
-
+    Key, TrueKey: integer;
+    AttempCounter: integer;
 begin
     randomize;
     {SaveTextAttr := TextAttr;}
@@ -104,6 +105,7 @@ begin
     s.y := ScreenHeight div 2;
     pos := Side(((random(39)) + 1) div 10);
     prev := pos;
+    AttempCounter := 10;
     key := 1;
     PrintChar(s.x, s.y, '*'); {print star}
     while true do
@@ -111,13 +113,16 @@ begin
         begin
             Delay(DelayDuration);
             PrintChar(s.x, s.y, ' '); {erase}
-            if (key < 0) then
+            if (key < 0) and (AttempCounter = 10) then
             begin
                 ChangeSide(pos, s, key);
                 key := 0;
+                AttempCounter := 0;
             end
             else
                 CalculatePosition(s, pos, prev);
+            if AttempCounter < 10 then
+                AttempCounter := AttempCounter + 1;
             Move(pos, s);
             if (s.x = ScreenWidth) and (s.y = ScreenHeight) then
                 continue;
@@ -125,9 +130,13 @@ begin
         end
         else
         begin
+            if Key < 0 then
+                TrueKey := Key;
             GetKey(Key);
             if (key = KeyEscape) or (key = ord(' ')) then
-                break
+                break;
+            if Key > 0 then
+                Key := TrueKey;
         end;
         {TextAttr := SaveTextAttr;}
     clrscr;

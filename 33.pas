@@ -2,6 +2,8 @@ program ThirthyThree;
 uses crt;
 
 const
+    Size = 3;
+    Message = 'YOU WIN';
     KeyEscape = 27;
     KeyDown = -72;
     KeyUp = -80;
@@ -12,6 +14,10 @@ const
 type
     Star = record
         x, y: integer;
+    end;
+    Area = record
+        BeginX, EndX, UpY, DownY: integer;
+        Symbol: char;
     end;
     Side = (up, down, left, right);
 
@@ -27,6 +33,26 @@ begin
         key := -ord(ReadKey)
     else
         key := ord(c);
+end;
+
+procedure BuildArea(var a: Area);
+var
+    x, y: integer;
+begin
+    for y := a.DownY downto a.upY do
+        for x := a.BeginX to a.EndX do
+        begin
+            GotoXY(x, y);
+            write(a.symbol);
+            GotoXY(1, 1);
+        end;
+end;
+
+procedure CheckBorder(s:Star; a: Area; var win: boolean);
+begin
+        if ((s.x >= a.BeginX) and (s.x <= a.EndX)) and
+            ((s.y >= a.UpY) and (s.y <= a.DownY)) then
+                win := true;
 end;
 
 procedure PrintChar(x, y: integer; c: char);
@@ -94,16 +120,25 @@ end;
 
 var
     s: Star;
-    {SaveTextAttr: integer;}
+    a: Area;
+    SaveTextAttr: integer;
     Key, TrueKey: integer;
     AttempCounter: integer;
+    Win: boolean;
 begin
     randomize;
-    {SaveTextAttr := TextAttr;}
+    SaveTextAttr := TextAttr;
     clrscr;
-    s.x := ScreenWidth div 2;
-    s.y := ScreenHeight div 2;
-    pos := Side(((random(39)) + 1) div 10);
+    a.BeginX := ScreenWidth div 2 - Size - 1;
+    a.EndX := a.BeginX + Size -1;
+    a.UpY := ScreenHeight div 2 - Size - 1;
+    a.DownY := a.UpY + Size -1;
+    a.Symbol := '@';
+    BuildArea(a);
+    s.x := 1;
+    s.y := 1;
+    pos := right;
+    win := false;
     prev := pos;
     AttempCounter := 10;
     key := 1;
@@ -122,11 +157,27 @@ begin
             else
                 CalculatePosition(s, pos, prev);
             if AttempCounter < 10 then
+            begin
                 AttempCounter := AttempCounter + 1;
+                GotoXY(1, ScreenHeight);
+                write(AttempCounter);
+                GotoXY(ScreenWidth - 10, ScreenHeight);
+                write('        ');
+                GotoXY(1, 1);
+            end
+            else
+            begin
+                GotoXY(ScreenWidth - 10, ScreenHeight);
+                write('READY!!!');
+                GotoXY(1, 1);
+            end;
             Move(pos, s);
             if (s.x = ScreenWidth) and (s.y = ScreenHeight) then
                 continue;
+            CheckBorder(s, a, win);
             PrintChar(s.x, s.y, '*'); {print star}
+            if win then
+                break;
         end
         else
         begin
@@ -138,6 +189,16 @@ begin
             if Key > 0 then
                 Key := TrueKey;
         end;
-        {TextAttr := SaveTextAttr;}
+        if win then
+        begin
+            Delay(1000);
+            clrscr;
+            TextColor(red);
+            GotoXY(ScreenWidth div 2, ScreenHeight div 2);
+            write(Message);
+            GotoXY(1, 1);
+            readln;
+            TextAttr := SaveTextAttr;
+        end;
     clrscr;
 end.

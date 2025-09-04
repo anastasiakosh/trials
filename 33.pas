@@ -122,7 +122,7 @@ end;
 var
     s: Star;
     a: Area;
-
+    {bonus: Area;}
     SaveTextAttr: integer;
     Key, TrueKey: integer;
     AttempCounter: integer;
@@ -138,6 +138,15 @@ begin
     a.DownY := a.UpY + Size -1;
     a.Symbol := '@';
     BuildArea(a);
+    {repeat
+    bonus.BeginX := random(ScreenWidth - size)+1;
+    bonus.EndX := bonus.BeginX + Size -1;
+    bonus.UpY := random(ScreenHeight - Size - 1)+1;
+    bonus.DownY := bonus.UpY + Size -1;
+    until ((bonus.BeginX  < a.BeginX) and (bonus.EndX > a.EndX)) and
+            ((bonus.UpY < a.UpY) and (bonus.DownY > a.DownY));
+    BuildArea(bonus);
+    a.Symbol := '%';}
     s.x := 1;
     s.y := 1;
     pos := right;

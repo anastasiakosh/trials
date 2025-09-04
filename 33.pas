@@ -3,6 +3,7 @@ uses crt;
 
 const
     Size = 3;
+    DefeatMessage = 'GAME OVER';
     Message = 'YOU WIN';
     KeyEscape = 27;
     KeyDown = -72;
@@ -94,14 +95,14 @@ begin
     up:
     begin
         s.y := s.y + 1;
-        if s.y > ScreenHeight then
+        if s.y > ScreenHeight - 1 then
             s.y := 1;
     end;
     down:
     begin
         s.y := s.y - 1;
         if s.y < 1 then
-            s.y := ScreenHeight;
+            s.y := ScreenHeight - 1;
     end;
     left:
     begin
@@ -121,10 +122,12 @@ end;
 var
     s: Star;
     a: Area;
+
     SaveTextAttr: integer;
     Key, TrueKey: integer;
     AttempCounter: integer;
-    Win: boolean;
+    MoveCouner: integer;
+    Win, Defeat: boolean;
 begin
     randomize;
     SaveTextAttr := TextAttr;
@@ -141,6 +144,8 @@ begin
     win := false;
     prev := pos;
     AttempCounter := 10;
+    MoveCouner := 0;
+    defeat := false;
     key := 1;
     PrintChar(s.x, s.y, '*'); {print star}
     while true do
@@ -174,6 +179,15 @@ begin
             Move(pos, s);
             if (s.x = ScreenWidth) and (s.y = ScreenHeight) then
                 continue;
+            MoveCouner := MoveCouner + 1;
+            GotoXY(ScreenWidth div 2, ScreenHeight);
+            write(MoveCouner);
+            GotoXY(1, 1);
+            if MoveCouner = 500 then
+            begin
+                defeat := true;
+                break;
+            end;
             CheckBorder(s, a, win);
             PrintChar(s.x, s.y, '*'); {print star}
             if win then
@@ -184,18 +198,34 @@ begin
             if Key < 0 then
                 TrueKey := Key;
             GetKey(Key);
-            if (key = KeyEscape) or (key = ord(' ')) then
+            if key = KeyEscape then
                 break;
+            if key = ord(' ') then
+            begin
+                key := 0;
+                repeat
+                    GetKey(key);
+                until key = ord(' ');
+            end;
             if Key > 0 then
                 Key := TrueKey;
         end;
-        if win then
+        if win or defeat then
         begin
             Delay(1000);
             clrscr;
-            TextColor(red);
+            if win or defeat then
             GotoXY(ScreenWidth div 2, ScreenHeight div 2);
-            write(Message);
+            if win then
+            begin
+                TextColor(green);
+                write(Message);
+            end
+            else
+            begin
+                TextColor(red);
+                write(DefeatMessage);
+            end;
             GotoXY(1, 1);
             readln;
             TextAttr := SaveTextAttr;

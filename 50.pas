@@ -99,31 +99,6 @@ begin
     RealToStr := RealToStr + IntToStrRecur(inte);
 end;
 
-function CutZero(str: string): string;
-var
-    i, j: integer;
-begin
-    i := 1;
-    while str[i] <> '.' do
-        i := i + 1;
-    for j := length(str) downto i do
-    begin
-        if str[j] = '.' then
-        begin
-            SetLength(str, j - 1);
-            break;
-        end;
-        if str[j] = '0' then
-        begin
-            SetLength(str, j - 1);
-            continue;
-        end
-        else
-            break;
-    end;
-    CutZero := str;
-end;
-
 function CalculateOfChars(len: integer; c: char): string;
 var
     i: integer;
@@ -221,7 +196,7 @@ begin
     begin
     writeln(f, HorizontalBorder);
     start := start + step;
-    ValuesforAngle := CutZero(RealToStr(start, znakovSFS));
+    ValuesforAngle := RealToStr(start, znakovSFS);
     riznica := Length(spaces) - Length(ValuesforAngle); 
     SpacecforAngle := CalculateOfChars(riznica, ' ');
     radian := (pi/180) * start;
@@ -229,10 +204,10 @@ begin
     cosim := cos(radian);
     tang  := sinus / cosim;
     cotag := cosim / sinus;
-    Ssinus := CutZero(RealToStr(sinus, Border));
-    Scosim := CutZero(RealToStr(cosim, Border));
-    Stang  := CutZero(RealToStr(tang, Border));
-    Scotag := CutZero(RealToStr(cotag, Border));
+    Ssinus := RealToStr(sinus, Border);
+    Scosim := RealToStr(cosim, Border);
+    Stang  := RealToStr(tang, Border);
+    Scotag := RealToStr(cotag, Border);
     riznica := border - (Length(Ssinus) - RetWholPart(Ssinus)); 
     Spacesinus := CalculateOfChars(riznica, ' ');
     riznica := border - (Length(Scosim) - RetWholPart(Scosim)); 
@@ -240,10 +215,6 @@ begin
     riznica := border - (Length(Stang) - RetWholPart(Stang)); 
     Spacetang := CalculateOfChars(riznica, ' ');
     riznica := border - (Length(Scotag) - RetWholPart(Scotag)); 
-    if RetWholPart(Scotag) = 2 then
-        riznica := riznica + 1;
-    if RetWholPart(Scotag) = 0 then
-        riznica := riznica + 1;
     Spacecotag := CalculateOfChars(riznica, ' ');
     writeln(f, '| ', ValuesforAngle, SpacecforAngle, ' | ', Ssinus, Spacesinus,
         ' | ',Scosim, Scpacecosim,
@@ -258,7 +229,7 @@ var
     start, final, step: real;
     AfterPoint: integer;
 begin
-    if ParamCount <> 5 then
+    if ParamCount <> 4 then
     begin
         writeln('Incorrect number of parameters specified');
         halt(1);
@@ -267,7 +238,7 @@ begin
     start := StrToReal(ParamStr(2));
     final := StrToReal(ParamStr(3));
     step := StrToReal(ParamStr(4));
-    AfterPoint := StrToInt(ParamStr(5));
+    AfterPoint := 8;
     rewrite(f);
     Draw(f, start, final, step, AfterPoint);
     close(f);

@@ -1,41 +1,36 @@
-program coul;
-type 
+program co;
+type
     listPtr = ^list;
     list = record 
         data: integer;
         next: listPtr;
     end;
 
-function findMAX(var l: listPtr) : integer;
-var
-    t, m: integer;
+function Coun(l: listPtr) : integer;
 begin
     if l <> nil then
     begin
-        t := l^.data;
-        l := l^.next;
-        FindMax := FindMAX(l);
-        if FindMAX < t then
-            Findmax := t;
+        Coun := Coun(l^.next) + 1;
     end
     else
-        exit;
+        Coun := 0;
 end;
+
 
 var
     l, tmp: listPtr;
     n, res: integer;
 begin
-    tmp := nil;
     l := nil;
-    while not seekeof do
+    tmp := nil;
+    while not seekEof do
     begin
-        new(tmp);
         read(n);
+        new(tmp);
         tmp^.data := n;
         tmp^.next := l;
         l := tmp;
     end;
-    res := findMAX(l);
+    res := Coun(l);
     writeln(res);
 end.

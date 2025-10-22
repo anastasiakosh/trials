@@ -7,6 +7,7 @@ const
     KeyDown  = 80;
     keyLeft  = 75;
     KeyRight = 77;
+    KeyExit  = 32;
 
 function GetKey: integer;
 
